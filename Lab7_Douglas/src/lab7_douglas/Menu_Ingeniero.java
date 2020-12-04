@@ -5,6 +5,8 @@
  */
 package lab7_douglas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ARLES MACIAS
@@ -38,6 +40,11 @@ public class Menu_Ingeniero extends javax.swing.JFrame {
 
         jbLog.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jbLog.setText("Login");
+        jbLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLogActionPerformed(evt);
+            }
+        });
 
         jbRe.setFont(new java.awt.Font("Century Gothic", 0, 36)); // NOI18N
         jbRe.setText("<-Regresar");
@@ -108,6 +115,20 @@ public class Menu_Ingeniero extends javax.swing.JFrame {
         Menu menu = new Menu();
         menu.setVisible(true);
     }//GEN-LAST:event_jbReActionPerformed
+
+    private void jbLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLogActionPerformed
+        UsuariosBinario ub = new UsuariosBinario("./alumnos.cbm");
+        ub.cargarArchivoUsuario();
+        for (int i = 0; i < ub.getUsuarios().size(); i++) {
+            Usuario u = ub.getUsuarios().get(i);
+            if(u.getUsuario().equals(txtUs.getText()) && u.getUsuario().equals("root") && u.getContraseña().equals(txtCon.getText())){
+                // mostrar jframe de compilador de usuario
+                // se crea la instancia y se muestra con setvisible(true);
+            }
+        }
+        
+        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
+    }//GEN-LAST:event_jbLogActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,8 @@
  */
 package lab7_douglas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ARLES MACIAS
@@ -146,8 +148,13 @@ public class Menu_Usuarios extends javax.swing.JFrame {
         ub.cargarArchivoUsuario();
         for (int i = 0; i < ub.getUsuarios().size(); i++) {
             Usuario u = ub.getUsuarios().get(i);
-            if(u.getUsuario().equals(u))
+            if(u.getUsuario().equals(txtUs.getText()) && u.getContraseña().equals(txtCon.getText())){
+                // mostrar jframe de compilador de usuario
+                // se crea la instancia y se muestra con setvisible(true);
+            }
         }
+        
+        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
         
     }//GEN-LAST:event_jbLogActionPerformed
 
