@@ -119,15 +119,18 @@ public class Menu_Ingeniero extends javax.swing.JFrame {
     private void jbLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLogActionPerformed
         UsuariosBinario ub = new UsuariosBinario("./alumnos.cbm");
         ub.cargarArchivoUsuario();
-        for (int i = 0; i < ub.getUsuarios().size(); i++) {
-            Usuario u = ub.getUsuarios().get(i);
-            if(u.getUsuario().equals(txtUs.getText()) && u.getUsuario().equals("root") && u.getContraseña().equals(txtCon.getText())){
+        //for (int i = 0; i < ub.getUsuarios().size(); i++) {
+            //Usuario u = ub.getUsuarios().get(i);
+            if(txtUs.getText().equals("ca.vallejo") && txtCon.getText().equals("compi123")){
                 // mostrar jframe de compilador de usuario
                 // se crea la instancia y se muestra con setvisible(true);
+                Com_Usuario cu = new Com_Usuario();
+                cu.setVisible(true);
+                this.dispose();
             }
-        }
+        //}
         
-        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
+        // JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
     }//GEN-LAST:event_jbLogActionPerformed
 
     /**

@@ -151,6 +151,9 @@ public class Menu_Usuarios extends javax.swing.JFrame {
             if(u.getUsuario().equals(txtUs.getText()) && u.getContraseña().equals(txtCon.getText())){
                 // mostrar jframe de compilador de usuario
                 // se crea la instancia y se muestra con setvisible(true);
+                Com_alumnos ca = new Com_alumnos(txtUs.getText());
+                ca.setVisible(true);
+                this.dispose();
             }
         }
         

@@ -5,6 +5,8 @@
  */
 package lab7_douglas;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ARLES MACIAS
@@ -14,9 +16,28 @@ public class Com_alumnos extends javax.swing.JFrame {
     /**
      * Creates new form Com_alumnos
      */
+    
+    private String usuario;
     public Com_alumnos() {
         initComponents();
     }
+    
+     public Com_alumnos(String usuario) {
+        initComponents();
+        this.usuario = usuario;
+        
+        UsuariosBinario ub = new UsuariosBinario("./alumnos.cbm");
+        ub.cargarArchivoUsuario();
+         ArrayList<Usuario> usuarios = ub.getUsuarios();
+         for (int i = 0; i < usuarios.size(); i++) {
+             if(usuarios.get(i).getUsuario().equals(this.usuario)){
+                 this.jlblNombre.setText(usuarios.get(i).getNombre()+" "+usuarios.get(i).getApellido());
+                 this.jlblNota.setText(usuarios.get(i).getNotafinal()+"");
+             }
+         }
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,17 +48,48 @@ public class Com_alumnos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jlblNombre = new javax.swing.JLabel();
+        jlblNota = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Alumno:");
+
+        jLabel2.setText("Nota:");
+
+        jlblNombre.setText("Nombre");
+
+        jlblNota.setText("10");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblNombre)
+                    .addComponent(jlblNota))
+                .addContainerGap(287, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jlblNombre))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jlblNota))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         pack();
@@ -79,5 +131,9 @@ public class Com_alumnos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jlblNombre;
+    private javax.swing.JLabel jlblNota;
     // End of variables declaration//GEN-END:variables
 }

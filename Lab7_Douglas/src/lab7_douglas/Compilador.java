@@ -6,13 +6,14 @@
 package lab7_douglas;
 
 import java.io.Serializable;
+import javax.swing.JProgressBar;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ARLES MACIAS
  */
-public class Compilador implements Serializable{
+public class Compilador extends Thread implements Serializable {
     private String Nombre;
     private String NameCreador;
     private int LineasCodigo;
@@ -24,11 +25,40 @@ public class Compilador implements Serializable{
     private int GCodigo;
     private DefaultTableModel Errores;
     private DefaultTableModel Simbolos;
+    private boolean avanzar;
+    private boolean vive;
+     private JProgressBar progBar;
     
     private static final long SerialVersionUID=555L;
 
     public Compilador() {
     }
+
+    public boolean isAvanzar() {
+        return avanzar;
+    }
+
+    public void setAvanzar(boolean avanzar) {
+        this.avanzar = avanzar;
+    }
+
+    public boolean isVive() {
+        return vive;
+    }
+
+    public void setVive(boolean vive) {
+        this.vive = vive;
+    }
+
+    public JProgressBar getProgBar() {
+        return progBar;
+    }
+
+    public void setProgBar(JProgressBar progBar) {
+        this.progBar = progBar;
+    }
+    
+    
 
     public Compilador(String Nombre, String NameCreador, int LineasCodigo, int Alexico, int Asintactico, int Asemantico, int CodigoInter, int OCodigo, int GCodigo, DefaultTableModel Errores, DefaultTableModel Simbolos) {
         this.Nombre = Nombre;
@@ -130,6 +160,23 @@ public class Compilador implements Serializable{
 
     public void setSimbolos(DefaultTableModel Simbolos) {
         this.Simbolos = Simbolos;
+    }
+    
+    @Override
+    public void run() {
+        while (vive) {
+            if (avanzar) {
+                progBar.setValue(progBar.getValue() + 1);
+                //activar y modificar propiedad stringPainted para que esto funciones
+                progBar.setString(Integer.toString(progBar.getValue()) + " Minutos");
+
+            }
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException ex) {
+            }
+        }
+
     }
     
 }
